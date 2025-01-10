@@ -11,7 +11,7 @@ COPY . .
 RUN go build -o main .
 
 # Indique que l'application à l'intérieur du conteneur écoutera sur le port 8080.
-EXPOSE 8080
+EXPOSE 8085
 
 # La commande à exécuter lorsque le conteneur démarre. Ici, elle lance l'application Go en exécutant le binaire main compilé précédemment.
 CMD ["./main"]

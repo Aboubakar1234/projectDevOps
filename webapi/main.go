@@ -27,7 +27,7 @@ func whoAmI(response http.ResponseWriter, r *http.Request) {
 
 	json.NewEncoder(response).Encode(who)
 
-	fmt.Println("Endpoint Hit", who)
+	fmt.Println("Endpoint Hit: /whoami")
 }
 
 func homePage(response http.ResponseWriter, r *http.Request) {
@@ -36,7 +36,7 @@ func homePage(response http.ResponseWriter, r *http.Request) {
 }
 
 func aboutMe(response http.ResponseWriter, r *http.Request) {
-	who := "EfreiParis"
+	who := "Aboubakar mohamed abdoulaye"
 
 	fmt.Fprintf(response, "A little bit about me...")
 	fmt.Println("Endpoint Hit: ", who)
@@ -47,5 +47,5 @@ func request1() {
 	http.HandleFunc("/aboutme", aboutMe)
 	http.HandleFunc("/whoami", whoAmI)
 
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":8085", nil))
 }

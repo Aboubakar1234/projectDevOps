@@ -16,7 +16,7 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    docker.image('custom-go-app:latest').run('-d -p 8080:8080')
+                    docker.image('custom-go-app:latest').run('-d -p 8085:8085')
                 }
             }
         }
