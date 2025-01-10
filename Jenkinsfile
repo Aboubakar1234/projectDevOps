@@ -1,15 +1,17 @@
 pipeline {
-    agent any
+    agent {
+    	label 'jenkins-slave'
+    }
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/Aboubakar1234/projectDevOps'  
+                git branch: 'main', credentialsId: 'GitHubCredentials', url :'https://github.com/Aboubakar1234/projectDevOps'  
             }
         }
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build('custom-go-app:latest')
+                    docker.build('custom-go-app:latest', './webapi')
                 }
             }
         }
