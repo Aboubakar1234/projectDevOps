@@ -71,6 +71,10 @@ pipeline {
                     // Déploie dans le namespace "production"
                     // Même logique, l’image locale est déjà connue de Minikube
                     sh """
+                    #cree le nameSpace et le || true ne le cree s'il existe deja 
+                    kubectl create namespace production || true
+
+                    #deployer
                     kubectl apply -f kubernetes/deployment-prod.yaml
                     kubectl apply -f kubernetes/service-prod.yaml
                     """
