@@ -54,7 +54,7 @@ pipeline {
                 script {
                     // Vérifie l’endpoint /health sur le NodePort exposé (8085)
                     def response = sh(
-                      script: 'curl -s -o /dev/null -w "%{http_code}" http://$(minikube ip):30080/health',
+                      script: 'curl -s -o /dev/null -w "%{http_code}" http://$(minikube ip):30085/health',
                       returnStdout: true
                     ).trim()
                     
