@@ -40,7 +40,7 @@ pipeline {
         stage('Test in Development') {
             steps {
                 script {
-                    def response = sh(script: "curl -s -o /dev/null -w '%{http_code}' http://$(minikube ip):8085/health", returnStdout: true).trim()
+                    def response = sh(script: 'curl -s -o /dev/null -w "%{http_code}" http://$(minikube ip):8085/health', returnStdout: true).trim()
                     if (response != '200') {
                         error "Health check failed with response code: ${response}"
                     }
