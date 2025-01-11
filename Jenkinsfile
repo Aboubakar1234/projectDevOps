@@ -16,6 +16,10 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
+                
+                    sh "minikube start --driver=docker"
+                    sh "eval \$(minikube docker-env)"
+                
                     docker.build(env.DOCKER_IMAGE, './webapi')
                 }
             }
