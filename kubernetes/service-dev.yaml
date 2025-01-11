@@ -10,5 +10,6 @@ spec:
   - protocol: TCP
     port: 8085
     targetPort: 8085
+    nodePort: 30080
   type: NodePort
 
