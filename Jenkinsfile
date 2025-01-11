@@ -20,7 +20,7 @@ pipeline {
                     sh "minikube start --driver=docker"
                     sh "eval \$(minikube docker-env)"
                 
-                    docker.build(env.DOCKER_IMAGE, './webapi')
+                    sh "docker build -t ${env.DOCKER_IMAGE} ./webapi"
                 }
             }
         }
