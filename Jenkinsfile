@@ -38,6 +38,10 @@ pipeline {
                     // Notez l'imagePullPolicy: Never dans votre YAML
                     // car l'image est déjà dans Minikube
                     sh """
+                    #cree le nameSpace et le || true ne le cree s'il existe deja 
+                    kubectl create namespace development || true
+
+                    #deployer
                     kubectl apply -f kubernetes/deployment-dev.yaml
                     kubectl apply -f kubernetes/service-dev.yaml
                     """
