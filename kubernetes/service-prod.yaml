@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: custom-go-app-prod
+  namespace: production
+spec:
+  selector:
+    app: custom-go-app
+  ports:
+  - protocol: TCP
+    port: 8085
+    targetPort: 8085
+  type: NodePort
+

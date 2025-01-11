@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: custom-go-app-dev
+  namespace: development
+spec:
+  replicas: 1  # Une seule instance en développement
+  selector:
+    matchLabels:
+      app: custom-go-app
+  template:
+    metadata:
+      labels:
+        app: custom-go-app
+    spec:
+      containers:
+      - name: custom-go-app
+        image: custom-go-app:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8085
+

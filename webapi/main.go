@@ -42,10 +42,17 @@ func aboutMe(response http.ResponseWriter, r *http.Request) {
 	fmt.Println("Endpoint Hit: ", who)
 }
 
+func healthCheck(response http.ResponseWriter, r *http.Request) {
+    response.WriteHeader(http.StatusOK) // Renvoie un code HTTP 200
+    fmt.Fprintf(response, "OK")        // Message simple pour indiquer que tout va bien
+    fmt.Println("Endpoint Hit: /health")
+}
+
 func request1() {
 	http.HandleFunc("/", homePage)
 	http.HandleFunc("/aboutme", aboutMe)
 	http.HandleFunc("/whoami", whoAmI)
-
+	http.HandleFunc("/health", healthCheck)
+	
 	log.Fatal(http.ListenAndServe(":8085", nil))
 }
