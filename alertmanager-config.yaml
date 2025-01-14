@@ -1,0 +1,18 @@
+# alertmanager-config.yaml
+
+alertmanager:
+  config:
+    global:
+      smtp_smarthost: 'smtp.gmail.com:587'                # Serveur SMTP de Gmail et port
+      smtp_from: 'aboubakarmahamat69@gmail.com'           # Votre adresse email Gmail
+      smtp_auth_username: 'aboubakarmahamat69@gmail.com'  # Votre adresse email Gmail
+      smtp_auth_password: 'wpfi ewtx gjkt fltk'            # Mot de passe d'application Gmail
+      smtp_require_tls: true                              # Activer TLS
+    route:
+      receiver: 'email-receiver'                           # Nom du receiver
+    receivers:
+      - name: 'email-receiver'
+        email_configs:
+          - to: 'mohamedabdoulayeaboubakar@gmail.com'     # Votre adresse email de réception
+            send_resolved: true
+

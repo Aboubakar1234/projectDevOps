@@ -1,0 +1,36 @@
+toute les commandes : 
+pour mettre a jour le helm des difftes config : 
+les deux au meme moement  : 
+helm upgrade prometheus prometheus-community/prometheus   --namespace monitoring   -f prometheus-alerts.yaml   -f alertmanager-config.yaml
+
+separent : 
+helm upgrade prometheus prometheus-community/prometheus -f alertmanager-config.yaml --namespace monitoring
+helm upgrade prometheus prometheus-community/prometheus -f alertmanager-config.yaml --namespace monitoring
+
+pour voir les differents interfaces  : 
+prometheus : 
+---export POD_NAME=$(kubectl get pods --namespace monitoring -l "app.kubernetes.io/name=prometheus,app.kubernetes.io/instance=prometheus" -o jsonpath="{.items[0].metadata.name}")
+---kubectl --namespace monitoring port-forward $POD_NAME 9090
+
+alertmanager :
+---export POD_NAME=$(kubectl get pods --namespace monitoring -l "app.kubernetes.io/name=alertmanager,app.kubernetes.io/instance=prometheus" -o jsonpath="{.items[0].metadata.name}")
+---kubectl port-forward $POD_NAME 9093:9093
+
+
+grafana :
+kubectl port-forward svc/grafana -n monitoring 3000:80
+
+
+apply the pod pending configuration :
+kubectl apply -f pending-pod.yaml -n default
+pour voir  : 
+kubectl get pods -n default
+
+nettoyer le test  :kubectl delete pod pending-pod -n default
+
+
+
+
+
+
+
