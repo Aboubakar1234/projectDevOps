@@ -54,7 +54,7 @@ pipeline {
                 script {
                     // Vérifie l’endpoint /health sur le NodePort exposé (8085)
                     def response = sh(
-                      script: 'curl -s -o /dev/null -w "%{http_code}" http://$(minikube ip):30080/health',
+                      script: 'curl -s -o /dev/null -w "%{http_code}" http://$(minikube ip):30085/health',
                       returnStdout: true
                     ).trim()
                     
@@ -71,6 +71,10 @@ pipeline {
                     // Déploie dans le namespace "production"
                     // Même logique, l’image locale est déjà connue de Minikube
                     sh """
+                    #cree le nameSpace et le || true ne le cree s'il existe deja 
+                    kubectl create namespace production || true
+
+                    #deployer
                     kubectl apply -f kubernetes/deployment-prod.yaml
                     kubectl apply -f kubernetes/service-prod.yaml
                     """
